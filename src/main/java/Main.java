@@ -4,6 +4,7 @@ import org.littleshoot.proxy.HttpFiltersSourceAdapter;
 import org.littleshoot.proxy.HttpProxyServer;
 import org.littleshoot.proxy.impl.DefaultHttpProxyServer;
 
+import java.net.InetSocketAddress;
 import java.util.HashSet;
 
 public class Main {
@@ -17,6 +18,7 @@ public class Main {
                                 return new Filter(ctx, originalRequest, blockedHosts);
                             }
                         })
+                        .withAddress(new InetSocketAddress("0.0.0.0", 8080))
                         .start();
     }
 }
