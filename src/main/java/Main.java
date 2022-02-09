@@ -13,13 +13,12 @@ public class Main {
         HashSet<String> blockedHosts = new HashSet<>();
         HttpProxyServer server =
                 DefaultHttpProxyServer.bootstrap()
-                        .withPort(8080)
                         .withFiltersSource(new HttpFiltersSourceAdapter() {
                             public Filter filterRequest(HttpRequest originalRequest, ChannelHandlerContext ctx) {
                                 return new Filter(ctx, originalRequest, blockedHosts);
                             }
                         })
-                        .withAddress(new InetSocketAddress("0.0.0.0", 8080))
+                        .withAddress(new InetSocketAddress("0.0.0.0", 8081))
                         .withProxyAuthenticator(new ProxyAuthenticator() {
                             @Override
                             public boolean authenticate(String s, String s1) {
